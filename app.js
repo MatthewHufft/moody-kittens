@@ -21,6 +21,7 @@ function addKitten(event) {
   }
   // @ts-ignore
   kittens.push(kitten)
+  saveKittens()
 }
 
 /**
@@ -28,7 +29,8 @@ function addKitten(event) {
  * Saves the string to localstorage at the key kittens
  */
 function saveKittens() {
-
+  window.localStorage.setItem("kittens", JSON.stringify(kittens))
+  drawKittens()
 }
 
 /**
