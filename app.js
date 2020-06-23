@@ -22,6 +22,7 @@ function addKitten(event) {
   // @ts-ignore
   kittens.push(kitten)
   saveKittens()
+  form.reset()
 }
 
 /**
@@ -38,12 +39,43 @@ function saveKittens() {
  * then parses the JSON string into an array. Finally sets
  * the kittens array to the retrieved array
  */
-function loadKittens() {}
+function loadKittens() {
+  let storedKittens = JSON.parse(window.localStorage.getItem("kittens"))
+  if (storedKittens) {
+    kittens = storedKittens
+  }
+}
 
 /**
  * Draw all of the kittens to the kittens element
  */
-function drawKittens() {}
+function drawKittens() {
+  let kittenListElement = document.getElementById("kittens")
+  let kittensTemplate = ""
+  kittens.forEach(kitten => {
+    kittensTemplate += `
+    <div class="card p-2 text-center w-50">
+      <img src="https://robohash.org/${kitten.name}?set=set4" height="200" alt="Moody Kittens">
+      <div class="mt-2">
+        <b class="d-flex"> Name: ${kitten.name}</b>
+        <br>
+        <b class="d-flex"> Mood:</b>
+        <br>
+        <b class="d-flex"> Affection:</b>
+        <br>
+        <div>
+          <button onclick="">Pet</button>
+          <button onclick="">Catnip</button>
+        </div>
+      </div>
+    </div>
+  <div class="p-2">
+    <div id="kittens" class="d-flex align-items-center flex-wrap">
+    </div>
+    `
+  })
+  kittenListElement.innerHTML = kittensTemplate
+}
 
 /**
  * Find the kitten in the array by its id
@@ -63,7 +95,9 @@ function findKittenById(id) {
  * save the kittens
  * @param {string} id
  */
-function pet(id) {}
+function pet(id) {
+  findKittensById()
+}
 
 /**
  * Find the kitten in the array of kittens
@@ -83,6 +117,7 @@ function setKittenMood(kitten) {}
 
 function getStarted() {
   document.getElementById("welcome").remove();
+  loadKittens();
   drawKittens();
 }
 
