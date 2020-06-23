@@ -19,7 +19,7 @@ function addKitten(event) {
   let kitten = {
     name: form.name.value
   }
-
+  // @ts-ignore
   kittens.push(kitten)
 }
 
@@ -27,7 +27,9 @@ function addKitten(event) {
  * Converts the kittens array to a JSON string then
  * Saves the string to localstorage at the key kittens
  */
-function saveKittens() {}
+function saveKittens() {
+
+}
 
 /**
  * Attempts to retrieve the kittens string from localstorage
