@@ -3,6 +3,8 @@
  * @type {Kitten[]}
  */
 let kittens = [];
+let affection = 5
+let mood = ""
 /**
  * Called when submitting the new Kitten Form
  * This method will pull data from the form
@@ -17,9 +19,12 @@ function addKitten(event) {
   let form = event.target
 
   let kitten = {
-    name: form.name.value
+    id: generateId(),
+    name: form.name.value,
+    mood: "Tolerant",
+    affection: 5,
+
   }
-  // @ts-ignore
   kittens.push(kitten)
   saveKittens()
   form.reset()
@@ -59,13 +64,13 @@ function drawKittens() {
       <div class="mt-2">
         <b class="d-flex"> Name: ${kitten.name}</b>
         <br>
-        <b class="d-flex"> Mood:</b>
+        <b class="d-flex"> Mood: ${kitten.mood}</b>
         <br>
-        <b class="d-flex"> Affection:</b>
+        <b class="d-flex"> Affection: ${kitten.affection}</b>
         <br>
         <div>
-          <button onclick="">Pet</button>
-          <button onclick="">Catnip</button>
+          <button onclick="pet('${kitten.id}')">Pet</button>
+          <button onclick="catnip('${kitten.id}')">Catnip</button>
         </div>
       </div>
     </div>
@@ -96,7 +101,16 @@ function findKittenById(id) {
  * @param {string} id
  */
 function pet(id) {
-  findKittensById()
+  let currentKitten = findKittenById(id)
+  let randomNumber = Math.random()
+  if (randomNumber > 0.7) {
+    currentKitten.affection ++;
+    setKittenMood(currentKitten)
+    saveKittens()
+  }
+  else currentKitten.affection --;
+  setKittenMood(currentKitten)
+  saveKittens()
 }
 
 /**
@@ -106,14 +120,18 @@ function pet(id) {
  * save the kittens
  * @param {string} id
  */
-function catnip(id) {}
+function catnip(id) {
+
+}
 
 /**
  * Sets the kittens mood based on its affection
  * Happy > 6, Tolerant <= 5, Angry <= 3, Gone <= 0
  * @param {Kitten} kitten
  */
-function setKittenMood(kitten) {}
+function setKittenMood(kitten) {
+  document.getElementById("moody-kittens").classList.remove(kitten-mood)
+}
 
 function getStarted() {
   document.getElementById("welcome").remove();
