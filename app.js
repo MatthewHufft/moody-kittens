@@ -121,6 +121,10 @@ function pet(id) {
  * @param {string} id
  */
 function catnip(id) {
+  let currentKitten = findKittenById(id)
+  currentKitten.mood = "tolerant"
+  currentKitten.affection = 5;
+  saveKittens()
 
 }
 
@@ -130,7 +134,14 @@ function catnip(id) {
  * @param {Kitten} kitten
  */
 function setKittenMood(kitten) {
-  document.getElementById("moody-kittens").classList.remove(kitten-mood)
+  document.getElementById("kittens").classList.remove(kitten.mood)
+  if (kitten.affection >= 6) {kitten.mood = "Happy"}
+  if (kitten.affection <= 5) {kitten.mood = "Tolerant"}
+  if (kitten.affection <= 3) {kitten.mood = "Angry"}
+  if (kitten.affection <= 0) {kitten.mood = "Gone"}
+
+  document.getElementById("kittens").classList.add(kitten.mood)
+  saveKittens()
 }
 
 function getStarted() {
