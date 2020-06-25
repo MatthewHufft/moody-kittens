@@ -25,9 +25,14 @@ function addKitten(event) {
     affection: 5,
 
   }
-  kittens.push(kitten)
-  saveKittens()
-  form.reset()
+  if (form.name.value == "") {alert("You must enter a name")}
+  else {
+    kittens.push(kitten)
+    saveKittens()
+
+    form.reset()
+    drawKittens()
+  }
 }
 
 /**
@@ -57,26 +62,31 @@ function loadKittens() {
 function drawKittens() {
   let kittenListElement = document.getElementById("kittens")
   let kittensTemplate = ""
+
   kittens.forEach(kitten => {
     kittensTemplate += `
-    <div class="card p-2 text-center w-50">
-      <img src="https://robohash.org/${kitten.name}?set=set4" height="200" alt="Moody Kittens">
-      <div class="mt-2">
-        <b class="d-flex"> Name: ${kitten.name}</b>
-        <br>
-        <b class="d-flex"> Mood: ${kitten.mood}</b>
-        <br>
-        <b class="d-flex"> Affection: ${kitten.affection}</b>
-        <br>
+
+    <div class="card p-2 text-center w-20 bg-dark kitten ${kitten.mood}">
+      <img class="kitten" src="https://robohash.org/${kitten.name}?set=set4" height="150" width="150" alt="Moody Kittens">
+      <div class="mt-2 text-light">
+
+        <div class="d-flex justify-content-center"> Name: ${kitten.name}</div>
+        <div class="d-flex justify-content-center"> Mood: ${kitten.mood}</div>
+        <div class="d-flex justify-content-center"> Affection: ${kitten.affection}</div>
+        
         <div>
           <button onclick="pet('${kitten.id}')">Pet</button>
           <button onclick="catnip('${kitten.id}')">Catnip</button>
         </div>
-      </div>
+        </div>
+        <div class="d-flex justify-content-center">
+        <i class="fa fa-trash text-danger action" id="delete-btn"aria-hidden="true" onclick="removeKitten('${kitten.id}')"></i></div>
     </div>
   <div class="p-2">
     <div id="kittens" class="d-flex align-items-center flex-wrap">
     </div>
+  </div>
+
     `
   })
   kittenListElement.innerHTML = kittensTemplate
@@ -122,7 +132,7 @@ function pet(id) {
  */
 function catnip(id) {
   let currentKitten = findKittenById(id)
-  currentKitten.mood = "tolerant"
+  currentKitten.mood = "Tolerant"
   currentKitten.affection = 5;
   saveKittens()
 
@@ -166,4 +176,13 @@ function generateId() {
     "-" +
     Math.floor(Math.random() * 10000000)
   );
+}
+
+function removeKitten(id) {
+  let index = kittens.findIndex(kitten => kitten.id == id)
+  if (index == -1) {
+    throw new Error("Invalid ID")
+  }
+  kittens.splice(index, 1)
+  saveKittens()
 }
