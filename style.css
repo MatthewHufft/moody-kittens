@@ -198,6 +198,10 @@ button.btn-special:hover{
   justify-content: center;
 }
 
+.button-large {
+font-size: larger;
+}
+
 .mt-1{
   margin-top: .5em;
 }

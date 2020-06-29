@@ -75,12 +75,13 @@ function drawKittens() {
         <div class="d-flex justify-content-center"> Affection: ${kitten.affection}</div>
         
         <div>
-          <button onclick="pet('${kitten.id}')">Pet</button>
-          <button onclick="catnip('${kitten.id}')">Catnip</button>
+          <button onclick="pet('${kitten.id}')">Pet Kitten</button>
+          <button onclick="catnip('${kitten.id}')">Give Catnip</button>
         </div>
         </div>
+        <hr>
         <div class="d-flex justify-content-center">
-        <i class="fa fa-trash text-danger action" id="delete-btn"aria-hidden="true" onclick="removeKitten('${kitten.id}')"></i></div>
+        <i class="fa fa-trash text-danger action button-large" id="delete-btn"aria-hidden="true" onclick="removeKitten('${kitten.id}')"></i></div>
     </div>
   <div class="p-2">
     <div id="kittens" class="d-flex align-items-center flex-wrap">
