@@ -1,10 +1,12 @@
 /**
  * Stores the list of kittens
  * @type {Kitten[]}
+ * 
  */
 let kittens = [];
 let affection = 5
 let mood = ""
+let kittenHistory = [];
 /**
  * Called when submitting the new Kitten Form
  * This method will pull data from the form
@@ -23,11 +25,17 @@ function addKitten(event) {
     name: form.name.value,
     mood: "Tolerant",
     affection: 5,
-
   }
+
+  let kittenName = form.name.value;
+
   if (form.name.value == "") {alert("You must enter a name")}
+  else if (kittenHistory.includes(kittenName)) {
+    alert("You can't have the same kitten twice")
+    }
   else {
     kittens.push(kitten)
+    kittenHistory.push(kittenName)
     saveKittens()
 
     form.reset()
@@ -41,6 +49,7 @@ function addKitten(event) {
  */
 function saveKittens() {
   window.localStorage.setItem("kittens", JSON.stringify(kittens))
+  window.localStorage.setItem("kittenHistory", JSON.stringify(kittenHistory))
   drawKittens()
 }
 
@@ -53,6 +62,10 @@ function loadKittens() {
   let storedKittens = JSON.parse(window.localStorage.getItem("kittens"))
   if (storedKittens) {
     kittens = storedKittens
+  }
+  let storedKittenHistory = JSON.parse(window.localStorage.getItem("kittenHistory"))
+  if (storedKittenHistory) {
+    kittenHistory = storedKittenHistory
   }
 }
 
