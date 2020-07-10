@@ -29,7 +29,7 @@ function addKitten(event) {
 
   let kittenName = form.name.value;
 
-  if (form.name.value == "") {alert("You must enter a name")}
+  if (kittenName == "") {alert("You must enter a name")}
   else if (kittenHistory.includes(kittenName)) {
     alert("You can't have the same kitten twice")
     }
@@ -198,5 +198,12 @@ function removeKitten(id) {
     throw new Error("Invalid ID")
   }
   kittens.splice(index, 1)
+
+  let indexName = kittens.findIndex(kitten => kitten.name == name)
+  if (index == -1) {
+    throw new Error("Invalid ID")
+  }
+  kittenHistory.splice(indexName, 1)
+
   saveKittens()
 }
