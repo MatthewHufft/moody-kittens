@@ -81,6 +81,7 @@ button{
   cursor: pointer;
   padding: .5em;
 }
+
 button:focus{
   outline: none;
 }
@@ -124,6 +125,14 @@ button.btn-special:hover{
   margin: 10px;
 
 }
+
+.grow { 
+  transition: all .2s ease-in-out; 
+  }
+  
+.grow:hover { 
+  transform: scale(1.07); 
+  }
 
 .shadow{
   filter: drop-shadow(var(--shadow));

@@ -79,7 +79,7 @@ function drawKittens() {
   kittens.forEach(kitten => {
     kittensTemplate += `
 
-    <div class="card p-2 text-center w-20 bg-dark kitten ${kitten.mood}">
+    <div class="card grow p-2 text-center w-20 bg-dark kitten ${kitten.mood}">
       <img class="kitten" src="https://robohash.org/${kitten.name}?set=set4" height="150" width="150" alt="Moody Kittens">
       <div class="mt-2 text-light">
 
