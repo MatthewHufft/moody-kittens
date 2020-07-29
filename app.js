@@ -37,6 +37,8 @@ function addKitten(event) {
     kittens.push(kitten)
     kittenHistory.push(kittenName)
     saveKittens()
+    // @ts-ignore
+    document.getElementById("meow1").play();
 
     form.reset()
     drawKittens()
@@ -157,7 +159,11 @@ function setKittenMood(kitten) {
   if (kitten.affection >= 6) {kitten.mood = "Happy"}
   if (kitten.affection <= 5) {kitten.mood = "Tolerant"}
   if (kitten.affection <= 3) {kitten.mood = "Angry"}
-  if (kitten.affection <= 0) {kitten.mood = "Gone"}
+  if (kitten.affection <= 0) {
+    kitten.mood = "Gone";
+    // @ts-ignore
+    document.getElementById("angryCat").play();
+  }
 
   document.getElementById("kittens").classList.add(kitten.mood)
   saveKittens()
