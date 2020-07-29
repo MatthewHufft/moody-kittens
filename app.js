@@ -96,11 +96,6 @@ function drawKittens() {
         <div class="d-flex justify-content-center">
         <i class="fa fa-trash text-danger action button-large" id="delete-btn"aria-hidden="true" onclick="removeKitten('${kitten.id}')"></i></div>
     </div>
-  <div class="p-2">
-    <div id="kittens" class="d-flex align-items-center flex-wrap">
-    </div>
-  </div>
-
     `
   })
   kittenListElement.innerHTML = kittensTemplate

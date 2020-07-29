@@ -121,6 +121,8 @@ button.btn-special:hover{
   padding: 1em;
   box-shadow: var(--shadow);
   border-radius: var(--corners);
+  margin: 10px;
+
 }
 
 .shadow{
